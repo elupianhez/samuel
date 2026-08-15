@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<title>Calculadora Samuel</title>
+
+	<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+</head>
+
+<body class="min-h-screen bg-gradient-to-br from-slate-950 via-emerald-950 to-green-900 flex items-center justify-center p-6">
+
+	<div class="w-full max-w-md">
+
+		<!-- Título -->
+		<div class="text-center mb-8">
+			<div class="mx-auto mb-6 flex h-48 w-48 items-center justify-center">
+
+	<img
+		src="image.png"
+		alt="Calculadora do Samuel"
+		class="h-full w-full object-contain"
+	/>
+
+</div>
+			<h1 class="text-3xl font-bold text-white">
+				Calculadora do Samuel
+			</h1>
+
+			<p class="mt-2 text-sm text-slate-400">
+				Faça seus cálculos de forma rápida e simples.
+			</p>
+		</div>
+
+		<!-- Card -->
+		<form
+			onsubmit="event.preventDefault();"
+			class="rounded-3xl border border-white/10 bg-white/10 p-7 shadow-2xl backdrop-blur-xl"
+		>
+
+			<!-- Número 1 -->
+			<div class="mb-5">
+				<label
+					for="numero1"
+					class="mb-2 block text-sm font-medium text-slate-200"
+				>
+					Primeiro número
+				</label>
+
+				<input
+					type="number"
+					step="any"
+					name="numero1"
+					id="numero1"
+					placeholder="Digite um número"
+					class="w-full rounded-xl border border-white/10 bg-slate-900/60 px-4 py-3 text-lg text-white outline-none transition placeholder:text-slate-500 focus:border-indigo-500 focus:ring-4 focus:ring-indigo-500/20"
+				>
+			</div>
+
+			<!-- Número 2 -->
+			<div class="mb-6">
+				<label
+					for="numero2"
+					class="mb-2 block text-sm font-medium text-slate-200"
+				>
+					Segundo número
+				</label>
+
+				<input
+					type="number"
+					step="any"
+					name="numero2"
+					id="numero2"
+					placeholder="Digite outro número"
+					class="w-full rounded-xl border border-white/10 bg-slate-900/60 px-4 py-3 text-lg text-white outline-none transition placeholder:text-slate-500 focus:border-indigo-500 focus:ring-4 focus:ring-indigo-500/20"
+				>
+			</div>
+
+			<!-- Operações -->
+			<div class="grid grid-cols-2 gap-3">
+
+				<button
+					type="button"
+					onclick="somar()"
+					class="cursor-pointer rounded-xl bg-indigo-500 px-4 py-3 font-semibold text-white shadow-lg shadow-indigo-500/20 transition hover:-translate-y-0.5 hover:bg-indigo-400 active:translate-y-0"
+				>
+					<span class="mr-2 text-xl">+</span>
+					Somar
+				</button>
+
+				<button
+					type="button"
+					onclick="subtrair()"
+					class="cursor-pointer rounded-xl bg-sky-500 px-4 py-3 font-semibold text-white shadow-lg shadow-sky-500/20 transition hover:-translate-y-0.5 hover:bg-sky-400 active:translate-y-0"
+				>
+					<span class="mr-2 text-xl">−</span>
+					Subtrair
+				</button>
+
+				<button
+					type="button"
+					onclick="multiplicar()"
+					class="cursor-pointer rounded-xl bg-violet-500 px-4 py-3 font-semibold text-white shadow-lg shadow-violet-500/20 transition hover:-translate-y-0.5 hover:bg-violet-400 active:translate-y-0"
+				>
+					<span class="mr-2 text-xl">×</span>
+					Multiplicar
+				</button>
+
+				<button
+					type="button"
+					onclick="dividir()"
+					class="cursor-pointer rounded-xl bg-fuchsia-500 px-4 py-3 font-semibold text-white shadow-lg shadow-fuchsia-500/20 transition hover:-translate-y-0.5 hover:bg-fuchsia-400 active:translate-y-0"
+				>
+					<span class="mr-2 text-xl">÷</span>
+					Dividir
+				</button>
+
+			</div>
+
+			<!-- Resultado -->
+			<div class="mt-6 rounded-2xl border border-white/10 bg-slate-950/40 p-5 text-center">
+				<p class="mb-1 text-xs font-semibold uppercase tracking-widest text-slate-500">
+					Resultado
+				</p>
+
+				<div
+					id="resultado"
+					class="min-h-9 text-2xl font-bold text-white"
+				>
+					—
+				</div>
+			</div>
+
+		</form>
+
+		<p class="mt-6 text-center text-xs text-slate-600">
+			Calculadora do Samuel
+		</p>
+
+	</div>
+
+	<script>
+		function pegarNumeros() {
+			const numero1 = Number(document.getElementById('numero1').value);
+			const numero2 = Number(document.getElementById('numero2').value);
+
+			return {
+				numero1,
+				numero2
+			};
+		}
+
+		function mostrarResultado(resultado) {
+			document.getElementById('resultado').textContent = resultado;
+		}
+
+		function somar() {
+			const { numero1, numero2 } = pegarNumeros();
+
+			mostrarResultado(numero1 + numero2);
+		}
+
+		function subtrair() {
+			const { numero1, numero2 } = pegarNumeros();
+
+			mostrarResultado(numero1 - numero2);
+		}
+
+		function multiplicar() {
+			const { numero1, numero2 } = pegarNumeros();
+
+			mostrarResultado(numero1 * numero2);
+		}
+
+		function dividir() {
+			const { numero1, numero2 } = pegarNumeros();
+
+			if (numero2 === 0) {
+				mostrarResultado('Não é possível dividir por zero 😅');
+				return;
+			}
+
+			mostrarResultado(numero1 / numero2);
+		}
+	</script>
+
+</body>
+</html>
